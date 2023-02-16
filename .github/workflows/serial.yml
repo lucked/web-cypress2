@@ -111,7 +111,7 @@ jobs:
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!! 🚀_*"}' $SLACK_WEBHOOK_URL
           curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
         env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
       - name: Check failed tests screenshots exists
         id: failed_screenshots
         uses: andstor/file-existence-action@v2
@@ -127,4 +127,4 @@ jobs:
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_See the failed test screenshots ❌_*"}' $SLACK_WEBHOOK_URL
           npx node slack.js
         env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
