@@ -116,7 +116,7 @@ jobs:
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!! 🚀_*"}' $SLACK_WEBHOOK_URL
           curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -132,7 +132,7 @@ jobs:
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_See the failed test screenshots ❌_*"}' $SLACK_WEBHOOK_URL
           npx node slack.js
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
 
 
 
