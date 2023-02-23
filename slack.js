@@ -1,13 +1,13 @@
 const { createReadStream } = require('fs');
 const { WebClient } = require('@slack/web-api');
-const token = 'xoxb-2181353489-3901471769702-dm3bymTldFCgyOHjV9TduFF9';
-const channelId = 'C03NKBG3QTF';
+const token = 'odm7r5n0rVUQEBnGWnzAbYJb';
+const channelId = 'C03HAETD2P2';
 const web = new WebClient(token);
 var fs = require('fs');
 var path = require('path');
 var dirPath = path.resolve('public');
 var filesList;
-fs.readdir(dirPath, function (err, files) {
+/*fs.readdir(dirPath, function (err, files) {
   filesList = files.filter(function (e) {
     return path.extname(e).toLowerCase() === '.png';
   });
@@ -22,4 +22,6 @@ fs.readdir(dirPath, function (err, files) {
     };
     uploadFileToSlack();
   }
-});
+});*/
+
+//https://hooks.slack.com/services/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
