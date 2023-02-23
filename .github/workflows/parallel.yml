@@ -4,7 +4,7 @@ permissions:
   contents: write
 jobs:
   setup:
-    name: Pre-test 🛠 
+    name: Pre-test 🛠
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -12,8 +12,8 @@ jobs:
       - name: Clean & create report directory
         run: |
           rm -rf mochawesome-report/ 
-          mkdir reports 
-        
+          mkdir reports
+
   execution:
     name: Execution ⏳
     needs: setup
@@ -23,15 +23,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        containers: [ 0, 1, 2, 3, 4, 5 ]
-    runs-on: ubuntu-latest   
+        containers: [0, 1, 2, 3, 4, 5]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Splitting up spec files & storing in GITHUB_ENV
         run: |
           echo "specs=$(node cypress-split.js $total_runners ${{ matrix.containers }})" >> $GITHUB_ENV
-      - name: Cypress run 
+      - name: Cypress run
         uses: cypress-io/github-action@v3
         id: test
         with:
@@ -55,7 +55,7 @@ jobs:
         with:
           name: Failed tests screenshots & videos
           path: public
-          
+
   reporting:
     name: Reporting 🚀
     needs: execution
@@ -94,7 +94,7 @@ jobs:
           files: "public"
       - name: Create report directory if not exist
         if: steps.check_files.outputs.files_exists == 'false'
-        run: mkdir public 
+        run: mkdir public
       - name: Merge and generate reports
         run: |
           npx mochawesome-merge > public/index.json
@@ -104,7 +104,7 @@ jobs:
         with:
           name: Final report
           path: public
-      - name: Deploy to GitHub Pages 
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -114,9 +114,9 @@ jobs:
         run: |
           npx cypress-slack-reporter --ci-provider none --report-dir public 
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!! 🚀_*"}' $SLACK_WEBHOOK_URL
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"https://adopets.github.io/web-cypress/"}' $SLACK_WEBHOOK_URL
         env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -132,26 +132,4 @@ jobs:
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_See the failed test screenshots ❌_*"}' $SLACK_WEBHOOK_URL
           npx node slack.js
         env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
