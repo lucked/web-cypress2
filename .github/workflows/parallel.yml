@@ -122,7 +122,4 @@ jobs:
       - name: Upload failed tests screenshots to slack channel
         if: steps.failed_screenshots.outputs.files_exists == 'true'
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"*_See the failed test screenshots ❌_*"}' $SLACK_WEBHOOK_URL
           npx node slack.js
-        env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
