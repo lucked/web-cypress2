@@ -110,13 +110,6 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./public
-      - name: Slack notification
-        run: |
-          npx cypress-slack-reporter --ci-provider none --report-dir public 
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"*_Here is the generated HTML report!! 🚀_*"}' $SLACK_WEBHOOK_URL
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"https://kosalai-personal.github.io/parallel-slack/"}' $SLACK_WEBHOOK_URL
-        env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
       - name: Use Node.js
         uses: actions/setup-node@v3
         with:
@@ -132,4 +125,4 @@ jobs:
           curl -X POST -H 'Content-type: application/json' --data '{"text":"*_See the failed test screenshots ❌_*"}' $SLACK_WEBHOOK_URL
           npx node slack.js
         env:
-          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
+          SLACK_WEBHOOK_URL: https://hooks.slack.com/services/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
